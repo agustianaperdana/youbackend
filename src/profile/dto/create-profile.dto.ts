@@ -6,28 +6,38 @@ import {
   IsString,
 } from 'class-validator';
 import { User } from '../../auth/schemas/user.schema';
-import { Category } from '../schemas/profile.schema';
 
 export class CreateProfileDto {
+  
   @IsNotEmpty()
   @IsString()
-  readonly title: string;
+  readonly name: string;
+ 
+  @IsNotEmpty()
+  @IsString()
+  readonly gender: string;
 
   @IsNotEmpty()
   @IsString()
-  readonly description: string;
+  readonly birthday: string;
 
   @IsNotEmpty()
   @IsString()
-  readonly author: string;
+  readonly horoscape: string;
+
+  @IsNotEmpty()
+  @IsString()
+  readonly zodiac: string;
 
   @IsNotEmpty()
   @IsNumber()
-  readonly price: number;
-
+  readonly height: number;
+  
   @IsNotEmpty()
-  @IsEnum(Category, { message: 'Please enter correct category.' })
-  readonly category: Category;
+  @IsNumber()
+  readonly weight: number;
+
+ 
 
   @IsEmpty({ message: 'You cannot pass user id' })
   readonly user: User;

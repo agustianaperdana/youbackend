@@ -20,11 +20,11 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('profile')
 export class ProfileController {
-  constructor(private ProfileService: ProfileService) {}
+  constructor(private profileService: ProfileService) {}
 
   @Get()
   async getAllProfile(@Query() query: ExpressQuery): Promise<Profile[]> {
-    return this.ProfileService.findAll(query);
+    return this.profileService.findAll(query);
   }
 
   @Post()
@@ -34,7 +34,7 @@ export class ProfileController {
     profile: CreateProfileDto,
     @Req() req,
   ): Promise<Profile> {
-    return this.ProfileService.create(profile, req.user);
+    return this.profileService.create(profile, req.user);
   }
 
   @Get(':id')
@@ -42,7 +42,7 @@ export class ProfileController {
     @Param('id')
     id: string,
   ): Promise<Profile> {
-    return this.ProfileService.findById(id);
+    return this.profileService.findById(id);
   }
 
   @Put(':id')
@@ -52,7 +52,7 @@ export class ProfileController {
     @Body()
     profile: UpdateProfileDto,
   ): Promise<Profile> {
-    return this.ProfileService.updateById(id, profile);
+    return this.profileService.updateById(id, profile);
   }
 
   @Delete(':id')
@@ -60,6 +60,6 @@ export class ProfileController {
     @Param('id')
     id: string,
   ): Promise<Profile> {
-    return this.ProfileService.deleteById(id);
+    return this.profileService.deleteById(id);
   }
 }
